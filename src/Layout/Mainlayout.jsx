@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Nav from "../Component/Nav";
-import Blogs from "../Pages/Blogs";
-import Bookmarks from "../Pages/Bookmarks";
-import Home from "../Pages/Home";
+import Footer from "../Component/Footer";
 
 const Mainlayout = () => {
   return (
@@ -10,8 +8,10 @@ const Mainlayout = () => {
       <div className="h-16">
         <Nav></Nav>
       </div>
-      <Outlet></Outlet>
-      
+      <div className="min-h-[calc(100vh-116px)]">
+        <Outlet></Outlet>
+      </div>
+      <Footer></Footer>
     </div>
   );
 };
