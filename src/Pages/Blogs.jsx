@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import BlogCard from "../Component/BlogCard";
+import Loader from "../Component/Loader";
 
 
 const blogss = () => {
   const blogs = useLoaderData();
-  console.log(blogs);
+  const navigation = useNavigation()
+  if(navigation.state === 'loading') return <Loader></Loader>
 
   return (
     <section className=" py-5">

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom";
+import Loader from "../Component/Loader";
 
 const Blog = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  
   const blog = useLoaderData();
   const {
     comments_count,
@@ -12,6 +14,9 @@ const Blog = () => {
     reading_time_minutes,
     public_reactions_count,
   } = blog;
+
+  
+
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 ">
@@ -78,20 +83,6 @@ const Blog = () => {
         </div>
         <Outlet></Outlet>
       </article>
-      <div>
-        {/* <div className="flex flex-wrap py-6 gap-2 border-t border-dashed border-gray-400">
-          {tags.map((tag) => (
-            <a
-              key={tag}
-              rel="noopener noreferrer"
-              href="#"
-              className="px-3 py-1 rounded-sm hover:underline bg-violet-400 text-gray-900"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div> */}
-      </div>
     </div>
   );
 };
