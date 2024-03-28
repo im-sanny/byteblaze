@@ -1,28 +1,30 @@
 import { useState } from "react";
-import { Link, Outlet, useLoaderData, useNavigation } from "react-router-dom";
-import Loader from "../Component/Loader";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { MdBookmarkAdd } from "react-icons/md";
+import { saveBlog } from "..";
 
 const Blog = () => {
   const [tabIndex, setTabIndex] = useState(0);
-  
+
   const blog = useLoaderData();
   const {
     comments_count,
     title,
-    tags,
     published_at,
     reading_time_minutes,
     public_reactions_count,
   } = blog;
 
-  
+  const handleBookmark = (blog) => {
+    saveBlog(blog);
+  };
 
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 ">
         <div className="space-y-6">
           <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">
-            {blog.title}
+            {title}
           </h1>
           <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center ">
             <p className="text-sm">
@@ -36,7 +38,7 @@ const Blog = () => {
           </div>
         </div>
         {/* tabs */}
-        <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap ">
+        <div className="flex items-center  overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap">
           <Link
             to=""
             onClick={() => setTabIndex(0)}
@@ -80,6 +82,12 @@ const Blog = () => {
             </svg>
             <span>Author</span>
           </Link>
+          <div
+            onClick={() => handleBookmark(blog)}
+            className="bg-primary p-3 rounded-full  ml-5 hover:bg-opacity-30 bg-opacity-20 cursor-pointer hover:scale-105 overflow-hidden"
+          >
+            <MdBookmarkAdd size={20} className="text-secondary" />
+          </div>
         </div>
         <Outlet></Outlet>
       </article>
